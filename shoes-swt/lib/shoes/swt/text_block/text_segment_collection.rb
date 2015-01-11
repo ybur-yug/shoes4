@@ -82,6 +82,10 @@ class Shoes
         # be in either, or both, of the segments. This method figures out which
         # segments apply, and what the relative ranges within each segment to use.
         def segment_ranges(text_range)
+          puts "\nTextSegmentCollection#segment_ranges"
+          p @segments
+          p dsl.text_styles
+          p text_range
           return [] unless @segments.first # TODO WTF #636
           return [] unless text_range.any?
 

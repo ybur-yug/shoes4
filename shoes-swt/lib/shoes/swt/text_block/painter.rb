@@ -16,6 +16,9 @@ class Shoes
           reset_graphics_context(paint_event.gc)
           return if @dsl.hidden?
 
+          puts "\nTextBlock::Painter#paintControl #{@dsl.inspect}"
+          puts caller.join("\n\t")
+
           draw_layouts(paint_event.gc)
         end
 

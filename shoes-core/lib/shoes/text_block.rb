@@ -51,6 +51,8 @@ class Shoes
     end
 
     def contents_alignment(current_position = nil)
+      puts "\nTextBlock#contents_alignment"
+      puts caller.join("\n\t")
       @gui.contents_alignment(current_position)
     end
 
