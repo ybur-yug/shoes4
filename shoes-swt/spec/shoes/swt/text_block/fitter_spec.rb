@@ -144,18 +144,19 @@ describe Shoes::Swt::TextBlock::Fitter do
     context "to empty first segment" do
       before(:each) do
         allow(dsl).to receive_messages(containing_width: 100)
+        expect(segment).to receive(:fill_background=).with(true)
       end
 
       it "rolls to second segment when 0 remaining width" do
         allow(dsl).to receive_messages(desired_width: 0)
         segments = when_fit_at(x: 0, y: 75, next_line_start: 95)
-        expect_segments(segments, [26, 76], [1, 97])
+        expect_segments(segments, [26, 76], [1, 96])
       end
 
       it "rolls to second segment when negative remaining width" do
         allow(dsl).to receive_messages(desired_width: -1)
         segments = when_fit_at(x: 0, y: 75, next_line_start: 95)
-        expect_segments(segments, [26, 76], [1, 97])
+        expect_segments(segments, [26, 76], [1, 96])
       end
     end
 
@@ -174,13 +175,13 @@ describe Shoes::Swt::TextBlock::Fitter do
       it "bumps down a line if not at start" do
         allow(dsl).to receive_messages(element_left: 20, left: 20)
         segments = when_fit_at(x: 20, y: 75, next_line_start: 95)
-        expect_segments(segments, [20, 76], [1, 96])
+        expect_segments(segments, [20, 76], [1, 95])
       end
 
       it "if unbounded height, still bumps down properly" do
         allow(dsl).to receive_messages(absolute_top: 95, element_left: 20, left: 20, margin_left: 1)
         segments = when_fit_at(x: 20, y: 75, next_line_start: 95)
-        expect_segments(segments, [20, 76], [1, 96])
+        expect_segments(segments, [20, 76], [1, 95])
       end
     end
 
